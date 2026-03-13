@@ -1,0 +1,19 @@
+ublox_gps_node:
+  ros__parameters:
+
+    debug: 2
+    device: /dev/ttyACM0
+    frame_id: gps
+
+    # IMPORTANT
+    config_on_startup: false
+
+    publish:
+      all: true
+      nav:
+        pvt: true
+        status: true
+
+
+###ros2 run ublox_gps ublox_gps_node   --ros-args   --params-file src/ublox/ublox_gps/config/zed_f9p_rover.yaml
+#launch file for now
