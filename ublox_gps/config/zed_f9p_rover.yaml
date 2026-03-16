@@ -1,7 +1,7 @@
 ublox_gps_node:
   ros__parameters:
 
-    debug: 2
+    debug: 1
     device: /dev/ttyACM0
     frame_id: gps
 
@@ -9,7 +9,7 @@ ublox_gps_node:
     config_on_startup: false
 
     publish:
-      all: true
+      all: false
       nav:
         pvt: true
         status: true

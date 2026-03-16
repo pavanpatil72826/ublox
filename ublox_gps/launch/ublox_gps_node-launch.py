@@ -37,24 +37,44 @@ import os
 import ament_index_python.packages
 import launch
 import launch_ros.actions
+from launch_ros.actions import Node
+from launch.substitutions import LaunchConfiguration
 
 
 def generate_launch_description():
     config_directory = os.path.join(
         ament_index_python.packages.get_package_share_directory('ublox_gps'),
         'config')
+
     params = os.path.join(config_directory, 'zed_f9p_rover.yaml')
-    ublox_gps_node = launch_ros.actions.Node(package='ublox_gps',
-                                             executable='ublox_gps_node',
-                                             output='both',
-                                             parameters=[params])
 
-    return launch.LaunchDescription([ublox_gps_node,
+    ublox_gps_node = Node(
+        package='ublox_gps',
+        executable='ublox_gps_node',
+        output='both',
+        parameters=[params]
+    )
 
-                                     launch.actions.RegisterEventHandler(
-                                         event_handler=launch.event_handlers.OnProcessExit(
-                                             target_action=ublox_gps_node,
-                                             on_exit=[launch.actions.EmitEvent(
-                                                 event=launch.events.Shutdown())],
-                                         )),
-                                     ])
+    static_tf = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='tf_imu_to_gnss',
+        arguments=[
+            '0.56', '0.0', '0.94',    # x y z
+            '0.0', '0.0', '0.0',       # roll pitch yaw
+            'imu_link',
+            'gps'
+        ]
+    )
+
+    return launch.LaunchDescription([
+        ublox_gps_node,
+        static_tf,
+
+        launch.actions.RegisterEventHandler(
+            event_handler=launch.event_handlers.OnProcessExit(
+                target_action=ublox_gps_node,
+                on_exit=[launch.actions.EmitEvent(
+                    event=launch.events.Shutdown())],
+            )),
+    ])
