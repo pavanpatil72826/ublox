@@ -1,56 +1,15 @@
-# ublox_gps_node:
-#   ros__parameters:
-
-#     debug: 1
-#     device: /dev/ttyACM0
-#     frame_id: gps
-
-#     # IMPORTANT
-#     config_on_startup: false
-
-#     publish:
-#       all: false
-#       nav:
-#         pvt: true
-#         status: true
-
-
-###ros2 run ublox_gps ublox_gps_node   --ros-args   --params-file src/ublox/ublox_gps/config/zed_f9p_rover.yaml
-#launch file for now
-
-
 ublox_gps_node:
   ros__parameters:
-
-    device: /dev/ttyACM0
+    device: /dev/ttyACM2
     frame_id: gps
-
-    uart1:
-      baudrate: 115200
-      # baudrate: 921600
-
+    config_on_startup: false
     rate: 10.0
     nav_rate: 1
-
     dynamic_model: automotive
-
-    # GNSS (important)
-    gnss:
-      gps: true
-      glonass: true
-      galileo: true
-      beidou: true
-
-    # Rover mode
     tmode3: 0
-
-    # Disable NMEA
-    nmea:
-      set: false
-
-    # Minimal clean publishing
+    inf:
+      all: true
     publish:
       nav:
         pvt: true
         relposned: true
-        sat: true
