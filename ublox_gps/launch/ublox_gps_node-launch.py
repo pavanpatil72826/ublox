@@ -46,7 +46,7 @@ def generate_launch_description():
         ament_index_python.packages.get_package_share_directory('ublox_gps'),
         'config')
 
-    params = os.path.join(config_directory, 'zed_f9p_rover.yaml')
+    params = os.path.join(config_directory, 'zed_f9p_rover_uart.yaml')
 
     ublox_gps_node = Node(
         package='ublox_gps',
