@@ -1,12 +1,17 @@
 # @Author: Pavan Patil
-# @Date:   2026-05-11 15:22:55
+# @Date:   2026-05-11 15:45:04
 # @Last Modified by:   Pavan Patil
-# @Last Modified time: 2026-05-11 15:42:13
+# @Last Modified time: 2026-05-11 15:45:28
+# @Author: Pavan Patil
+# @Date:   2026-05-11 15:45:04
+# @Last Modified by:   Pavan Patil
+# @Last Modified time: 2026-05-11 15:45:28
 ublox_gps_node:
   ros__parameters:
     device: /dev/ttyUSB0
     frame_id: gps
     config_on_startup: false
+    uart1.baudrate: 115200
     rate: 10.0
     nav_rate: 1
     dynamic_model: automotive
