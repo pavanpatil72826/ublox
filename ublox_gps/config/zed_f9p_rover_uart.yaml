@@ -8,7 +8,7 @@
 # @Last Modified time: 2026-05-11 15:45:28
 ublox_gps_node:
   ros__parameters:
-    device: /dev/ttyUSB2
+    device: /dev/ttyUSB1
     frame_id: gps
     config_on_startup: false
     uart1.baudrate: 115200
