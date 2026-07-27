@@ -1,7 +1,7 @@
 # @Author: Pavan Patil
 # @Date:   2026-05-11 15:45:04
 # @Last Modified by:   Pavan Patil
-# @Last Modified time: 2026-05-11 15:45:28
+# @Last Modified time: 2026-07-27 12:41:52
 # @Author: Pavan Patil
 # @Date:   2026-05-11 15:45:04
 # @Last Modified by:   Pavan Patil
@@ -11,7 +11,11 @@ ublox_gps_node:
     device: /dev/ttyUSB1
     frame_id: gps
     config_on_startup: false
-    uart1.baudrate: 115200
+    save_on_shutdown: true
+    uart1:
+      baudrate: 115200
+      in: 1
+      out: 1    # UBX only — NMEA was unused and causing txbuf alloc errors
     rate: 10.0
     nav_rate: 1
     dynamic_model: automotive
